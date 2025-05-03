@@ -1,0 +1,497 @@
+[
+    {
+      "id": 1,
+      "created": "2025-04-26 10:22:00",
+      "updated": "2025-04-26 10:22:00",
+      "monetary_account_id": 2108100,
+      "amount": { "currency": "EUR", "value": "-4.50" },
+      "description": "Café Lokaal - Cappuccino",
+      "type": "CARD",
+      "merchant_reference": null,
+      "maturity_date": "2025-04-26",
+      "alias": {
+        "iban": "NL86BUNQ0123456789",
+        "is_light": false,
+        "display_name": "Sophie Jansen",
+        "avatar": { "uuid": "avatar-sophie", "image": [], "anchor_uuid": null },
+        "label_user": {
+          "uuid": "user-uuid-sophie",
+          "display_name": "Sophie Jansen",
+          "country": "NL",
+          "avatar": null,
+          "public_nick_name": "SophieJ"
+        },
+        "country": "NL"
+      },
+      "counterparty_alias": {
+        "iban": "NL91BANK0123456789",
+        "is_light": false,
+        "display_name": "Café Lokaal",
+        "label_user": {
+          "uuid": "merchant-uuid-001",
+          "display_name": "Café Lokaal",
+          "country": "NL",
+          "avatar": null,
+          "public_nick_name": "CafeLokaalAMS"
+        },
+        "avatar": null,
+        "country": "NL"
+      },
+      "attachment": [],
+      "geolocation": { "latitude": 52.3702, "longitude": 4.8952, "altitude": 0, "radius": 25 },
+      "batch_id": null,
+      "conversation": null,
+      "allow_chat": true,
+      "scheduled_id": null,
+      "address_billing": null,
+      "address_shipping": null
+    },
+    {
+      "id": 2,
+      "created": "2025-04-25 18:47:00",
+      "updated": "2025-04-25 18:47:00",
+      "monetary_account_id": 2108100,
+      "amount": { "currency": "EUR", "value": "-27.80" },
+      "description": "Marqt Groceries",
+      "type": "CARD",
+      "merchant_reference": null,
+      "maturity_date": "2025-04-25",
+      "alias": {
+        "iban": "NL86BUNQ0123456789",
+        "is_light": false,
+        "display_name": "Sophie Jansen",
+        "avatar": { "uuid": "avatar-sophie", "image": [], "anchor_uuid": null },
+        "label_user": {
+          "uuid": "user-uuid-sophie",
+          "display_name": "Sophie Jansen",
+          "country": "NL",
+          "avatar": null,
+          "public_nick_name": "SophieJ"
+        },
+        "country": "NL"
+      },
+      "counterparty_alias": {
+        "iban": "NL92MARQ0000001234",
+        "is_light": false,
+        "display_name": "Marqt Amsterdam",
+        "label_user": {
+          "uuid": "merchant-uuid-002",
+          "display_name": "Marqt Amsterdam",
+          "country": "NL",
+          "avatar": null,
+          "public_nick_name": "Marqt"
+        },
+        "avatar": null,
+        "country": "NL"
+      },
+      "attachment": [],
+      "geolocation": { "latitude": 52.3634, "longitude": 4.8796, "altitude": 0, "radius": 50 },
+      "batch_id": null,
+      "conversation": null,
+      "allow_chat": true,
+      "scheduled_id": null,
+      "address_billing": {
+        "street": "Elandsgracht 12",
+        "house_number": "12",
+        "postal_code": "1016TV",
+        "city": "Amsterdam",
+        "country": "NL"
+      },
+      "address_shipping": null
+    },
+    {
+      "id": 3,
+      "created": "2025-04-22 19:30:00",
+      "updated": "2025-04-22 19:30:00",
+      "monetary_account_id": 2108100,
+      "amount": { "currency": "EUR", "value": "-18.40" },
+      "description": "SushiDaily - Dinner",
+      "type": "IDEAL",
+      "merchant_reference": "ORDER_882343",
+      "maturity_date": "2025-04-22",
+      "alias": {
+        "iban": "NL86BUNQ0123456789",
+        "is_light": false,
+        "display_name": "Sophie Jansen",
+        "avatar": { "uuid": "avatar-sophie", "image": [], "anchor_uuid": null },
+        "label_user": {
+          "uuid": "user-uuid-sophie",
+          "display_name": "Sophie Jansen",
+          "country": "NL",
+          "avatar": null,
+          "public_nick_name": "SophieJ"
+        },
+        "country": "NL"
+      },
+      "counterparty_alias": {
+        "iban": null,
+        "is_light": true,
+        "display_name": "SushiDaily",
+        "label_user": {
+          "uuid": "merchant-uuid-003",
+          "display_name": "SushiDaily",
+          "country": "NL",
+          "avatar": null,
+          "public_nick_name": "SushiDaily"
+        },
+        "avatar": null,
+        "country": "NL"
+      },
+      "attachment": [],
+      "geolocation": null,
+      "batch_id": null,
+      "conversation": null,
+      "allow_chat": true,
+      "scheduled_id": null,
+      "address_billing": null,
+      "address_shipping": {
+        "street": "Singel 232",
+        "house_number": "232",
+        "postal_code": "1016AB",
+        "city": "Amsterdam",
+        "country": "NL"
+      }
+    },
+    {
+        "id": 4,
+        "created": "2025-04-01 12:10:00",
+        "updated": "2025-04-01 12:10:00",
+        "monetary_account_id": 2108100,
+        "amount": { "currency": "EUR", "value": "-12.95" },
+        "description": "BoekenGigant.nl - Book",
+        "type": "IDEAL",
+        "merchant_reference": "ORDER_741129",
+        "maturity_date": "2025-04-01",
+        "alias": {
+          "iban": "NL86BUNQ0123456789",
+          "is_light": false,
+          "display_name": "Sophie Jansen",
+          "avatar": { "uuid": "avatar-sophie", "image": [], "anchor_uuid": null },
+          "label_user": {
+            "uuid": "user-uuid-sophie",
+            "display_name": "Sophie Jansen",
+            "country": "NL",
+            "avatar": null,
+            "public_nick_name": "SophieJ"
+          },
+          "country": "NL"
+        },
+        "counterparty_alias": {
+          "iban": null,
+          "is_light": true,
+          "display_name": "BoekenGigant",
+          "label_user": {
+            "uuid": null,
+            "display_name": "BoekenGigant",
+            "country": "NL",
+            "avatar": null,
+            "public_nick_name": "BoekenGigant"
+          },
+          "avatar": null,
+          "country": "NL"
+        },
+        "attachment": [],
+        "geolocation": null,
+        "batch_id": null,
+        "conversation": null,
+        "allow_chat": true,
+        "scheduled_id": null,
+        "address_billing": null,
+        "address_shipping": {
+          "street": "Spuistraat 10",
+          "house_number": "10",
+          "postal_code": "1012TS",
+          "city": "Amsterdam",
+          "country": "NL"
+        }
+      },
+      {
+        "id": 5,
+        "created": "2025-04-01 08:00:00",
+        "updated": "2025-04-01 08:00:00",
+        "monetary_account_id": 2108100,
+        "amount": { "currency": "EUR", "value": "-36.00" },
+        "description": "GVB Amsterdam - Monthly Metro Subscription",
+        "type": "BUNQ",
+        "merchant_reference": null,
+        "maturity_date": "2025-04-01",
+        "alias": {
+          "iban": "NL86BUNQ0123456789",
+          "is_light": false,
+          "display_name": "Sophie Jansen",
+          "avatar": { "uuid": "avatar-sophie", "image": [], "anchor_uuid": null },
+          "label_user": {
+            "uuid": "user-uuid-sophie",
+            "display_name": "Sophie Jansen",
+            "country": "NL",
+            "avatar": null,
+            "public_nick_name": "SophieJ"
+          },
+          "country": "NL"
+        },
+        "counterparty_alias": {
+          "iban": "NL93GVB0123456789",
+          "is_light": false,
+          "display_name": "GVB",
+          "label_user": {
+            "uuid": "merchant-uuid-005",
+            "display_name": "GVB Amsterdam",
+            "country": "NL",
+            "avatar": null,
+            "public_nick_name": "GVB Public Transport"
+          },
+          "avatar": null,
+          "country": "NL"
+        },
+        "attachment": [],
+        "geolocation": null,
+        "batch_id": null,
+        "conversation": null,
+        "allow_chat": false,
+        "scheduled_id": null,
+        "address_billing": null,
+        "address_shipping": null
+      },
+      {
+        "id": 6,
+        "created": "2025-04-20 15:10:00",
+        "updated": "2025-04-20 15:10:00",
+        "monetary_account_id": 2108100,
+        "amount": { "currency": "EUR", "value": "-3.90" },
+        "description": "IJscuypje - Ice Cream",
+        "type": "CARD",
+        "merchant_reference": null,
+        "maturity_date": "2025-04-20",
+        "alias": {
+          "iban": "NL86BUNQ0123456789",
+          "is_light": false,
+          "display_name": "Sophie Jansen",
+          "avatar": { "uuid": "avatar-sophie", "image": [], "anchor_uuid": null },
+          "label_user": {
+            "uuid": "user-uuid-sophie",
+            "display_name": "Sophie Jansen",
+            "country": "NL",
+            "avatar": null,
+            "public_nick_name": "SophieJ"
+          },
+          "country": "NL"
+        },
+        "counterparty_alias": {
+          "iban": null,
+          "is_light": false,
+          "display_name": "IJscuypje",
+          "label_user": {
+            "uuid": "merchant-uuid-006",
+            "display_name": "IJscuypje",
+            "country": "NL",
+            "avatar": null,
+            "public_nick_name": "IJscuypje"
+          },
+          "avatar": null,
+          "country": "NL"
+        },
+        "attachment": [],
+        "geolocation": { "latitude": 52.3625, "longitude": 4.8860, "altitude": 0, "radius": 15 },
+        "batch_id": null,
+        "conversation": null,
+        "allow_chat": true,
+        "scheduled_id": null,
+        "address_billing": null,
+        "address_shipping": null
+      },
+      {
+        "id": 7,
+        "created": "2025-04-23 20:00:00",
+        "updated": "2025-04-23 20:00:00",
+        "monetary_account_id": 2108100,
+        "amount": { "currency": "EUR", "value": "-5.50" },
+        "description": "JuiceBar - Post-gym Smoothie",
+        "type": "CARD",
+        "merchant_reference": null,
+        "maturity_date": "2025-04-23",
+        "alias": {
+          "iban": "NL86BUNQ0123456789",
+          "is_light": false,
+          "display_name": "Sophie Jansen",
+          "avatar": { "uuid": "avatar-sophie", "image": [], "anchor_uuid": null },
+          "label_user": {
+            "uuid": "user-uuid-sophie",
+            "display_name": "Sophie Jansen",
+            "country": "NL",
+            "avatar": null,
+            "public_nick_name": "SophieJ"
+          },
+          "country": "NL"
+        },
+        "counterparty_alias": {
+          "iban": null,
+          "is_light": false,
+          "display_name": "JuiceBar Amsterdam",
+          "label_user": {
+            "uuid": "merchant-uuid-007",
+            "display_name": "JuiceBar Amsterdam",
+            "country": "NL",
+            "avatar": null,
+            "public_nick_name": "JuiceBar"
+          },
+          "avatar": null,
+          "country": "NL"
+        },
+        "attachment": [],
+        "geolocation": null,
+        "batch_id": null,
+        "conversation": null,
+        "allow_chat": true,
+        "scheduled_id": null,
+        "address_billing": null,
+        "address_shipping": null
+      },
+      {
+        "id": 8,
+        "created": "2025-05-02 18:35:00",
+        "updated": "2025-05-02 18:35:00",
+        "monetary_account_id": 2108100,
+        "amount": { "currency": "EUR", "value": "-24.60" },
+        "description": "Marqt Groceries",
+        "type": "CARD",
+        "merchant_reference": null,
+        "maturity_date": "2025-05-02",
+        "alias": {
+          "iban": "NL86BUNQ0123456789",
+          "is_light": false,
+          "display_name": "Sophie Jansen",
+          "avatar": { "uuid": "avatar-sophie", "image": [], "anchor_uuid": null },
+          "label_user": {
+            "uuid": "user-uuid-sophie",
+            "display_name": "Sophie Jansen",
+            "country": "NL",
+            "avatar": null,
+            "public_nick_name": "SophieJ"
+          },
+          "country": "NL"
+        },
+        "counterparty_alias": {
+          "iban": "NL92MARQ0000001234",
+          "is_light": false,
+          "display_name": "Marqt Amsterdam",
+          "label_user": {
+            "uuid": "merchant-uuid-002",
+            "display_name": "Marqt Amsterdam",
+            "country": "NL",
+            "avatar": null,
+            "public_nick_name": "Marqt"
+          },
+          "avatar": null,
+          "country": "NL"
+        },
+        "attachment": [],
+        "geolocation": { "latitude": 52.3634, "longitude": 4.8796, "altitude": 0, "radius": 50 },
+        "batch_id": null,
+        "conversation": null,
+        "allow_chat": true,
+        "scheduled_id": null,
+        "address_billing": null,
+        "address_shipping": null
+      },
+      {
+        "id": 9,
+        "created": "2025-04-27 10:10:00",
+        "updated": "2025-04-27 10:10:00",
+        "monetary_account_id": 2108100,
+        "amount": { "currency": "EUR", "value": "-4.50" },
+        "description": "Café Lokaal - Weekend Coffee",
+        "type": "CARD",
+        "merchant_reference": null,
+        "maturity_date": "2025-04-27",
+        "alias": {
+          "iban": "NL86BUNQ0123456789",
+          "is_light": false,
+          "display_name": "Sophie Jansen",
+          "avatar": { "uuid": "avatar-sophie", "image": [], "anchor_uuid": null },
+          "label_user": {
+            "uuid": "user-uuid-sophie",
+            "display_name": "Sophie Jansen",
+            "country": "NL",
+            "avatar": null,
+            "public_nick_name": "SophieJ"
+          },
+          "country": "NL"
+        },
+        "counterparty_alias": {
+          "iban": null,
+          "is_light": false,
+          "display_name": "Café Lokaal",
+          "label_user": {
+            "uuid": "merchant-uuid-001",
+            "display_name": "Café Lokaal",
+            "country": "NL",
+            "avatar": null,
+            "public_nick_name": "CafeLokaalAMS"
+          },
+          "avatar": null,
+          "country": "NL"
+        },
+        "attachment": [],
+        "geolocation": { "latitude": 52.3702, "longitude": 4.8952, "altitude": 0, "radius": 25 },
+        "batch_id": null,
+        "conversation": null,
+        "allow_chat": true,
+        "scheduled_id": null,
+        "address_billing": null,
+        "address_shipping": null
+      },
+      {
+        "id": 10,
+        "created": "2025-05-01 19:45:00",
+        "updated": "2025-05-01 19:45:00",
+        "monetary_account_id": 2108100,
+        "amount": { "currency": "EUR", "value": "-17.90" },
+        "description": "SushiDaily - Takeout",
+        "type": "IDEAL",
+        "merchant_reference": "ORDER_953102",
+        "maturity_date": "2025-05-01",
+        "alias": {
+          "iban": "NL86BUNQ0123456789",
+          "is_light": false,
+          "display_name": "Sophie Jansen",
+          "avatar": { "uuid": "avatar-sophie", "image": [], "anchor_uuid": null },
+          "label_user": {
+            "uuid": "user-uuid-sophie",
+            "display_name": "Sophie Jansen",
+            "country": "NL",
+            "avatar": null,
+            "public_nick_name": "SophieJ"
+          },
+          "country": "NL"
+        },
+        "counterparty_alias": {
+          "iban": null,
+          "is_light": true,
+          "display_name": "SushiDaily",
+          "label_user": {
+            "uuid": "merchant-uuid-003",
+            "display_name": "SushiDaily",
+            "country": "NL",
+            "avatar": null,
+            "public_nick_name": "SushiDaily"
+          },
+          "avatar": null,
+          "country": "NL"
+        },
+        "attachment": [],
+        "geolocation": null,
+        "batch_id": null,
+        "conversation": null,
+        "allow_chat": true,
+        "scheduled_id": null,
+        "address_billing": null,
+        "address_shipping": {
+          "street": "Singel 232",
+          "house_number": "232",
+          "postal_code": "1016AB",
+          "city": "Amsterdam",
+          "country": "NL"
+        }
+    }
+]
+  
