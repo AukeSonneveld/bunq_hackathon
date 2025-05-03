@@ -46,7 +46,14 @@ def get_user_payments() -> list:
     pagination.count = 10
 
     payments = PaymentApiObject.list(monetary_account_id=acc_id,params=pagination.url_params_count_only).value
-    return payments[:max_returned_payments]
+
+    returned_payments = []
+    for payment in payments:
+        returned_payments.append({
+            "Amount": f"{payment.amount.value} {payment.amount.currency}",
+            "Description": payment.description
+        })
+    return returned_payments[:max_returned_payments]
 
 @mcp.tool()
 def get_weather_at() -> dict:
