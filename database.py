@@ -60,6 +60,28 @@ class PaymentDatabase:
         result = self.cursor.fetchone()
         return json.loads(result[0]) if result else None
     
+    def get_payment_details(self, payment_id):
+        """Retrieve both original payment and summary for a given payment ID.
+        
+        Args:
+            payment_id: The ID of the payment to retrieve
+            
+        Returns:
+            tuple: (original_payment, summary) or (None, None) if not found
+        """
+        self.cursor.execute('''
+            SELECT original_payment, analysis 
+            FROM payment_summaries 
+            WHERE payment_id = ?
+            ORDER BY created_at DESC
+            LIMIT 1
+        ''', (payment_id,))
+        result = self.cursor.fetchone()
+        
+        if result:
+            return json.loads(result[0]), json.loads(result[1])
+        return None, None
+    
     def get_all_summaries(self):
         """Retrieve all payment summaries."""
         self.cursor.execute('SELECT payment_id, analysis FROM payment_summaries')
