@@ -4,6 +4,7 @@ from mcp import ClientSession, StdioServerParameters
 from mcp.client.stdio import stdio_client
 import os
 import re
+import datetime
 from dotenv import load_dotenv
 load_dotenv()
 
@@ -11,19 +12,16 @@ client = genai.Client(
     api_key=os.getenv("GEMINI_API_KEY")
 )
 
-
-# Create server parameters for stdio connection
 server_params = StdioServerParameters(
-    command="python",  # Executable
+    command="python",
     args=[
         "server.py"
-    ],  # Optional command line arguments
-    env=None,  # Optional environment variables
+    ],
+    env=None,
 )
 
 
 def uri_template_to_json_schema(uri_template: str) -> dict:
-    # Extract parameters in the form {param}
     params = re.findall(r'{(\w+)}', uri_template)
     return {
         "type": "object",
@@ -40,7 +38,7 @@ async def run():
             read,
             write,
         ) as session:
-            prompt = "Please check my bunq bank account balance and greet with my name Steven"
+            prompt = "Please check the weather in Amsterdam and get the current bank account balance of the user. Use the tools available to you."
             await session.initialize()
 
             mcp_resource_temp = await session.list_resource_templates()
@@ -52,16 +50,28 @@ async def run():
                 }
                 for tool in mcp_resource_temp.resourceTemplates
             ]
+
             mcp_resources = await session.list_resources()
             resources = [
                 {
-                    "name": tool.name.replace("://", "_").replace("/", "_"),
+                    "name": tool.name,
                     "description": tool.description,
                     "parameters": None,
                 }
                 for tool in mcp_resources.resources
             ]
-            tools = types.Tool(function_declarations=resources + resourceTemplates)
+
+            mcp_tools = await session.list_tools()
+            tools = [
+                {
+                    "name": tool.name,
+                    "description": tool.description,
+                    "parameters": tool.inputSchema,
+                }
+                for tool in mcp_tools.tools
+            ]
+
+            tool_conf = types.Tool(function_declarations=resources + resourceTemplates + tools)
 
 
             response = client.models.generate_content(
@@ -69,33 +79,49 @@ async def run():
                 contents=prompt,
                 config=types.GenerateContentConfig(
                     temperature=0.2,
-                    tools=[tools],
+                    tools=[tool_conf],
                 ),
             )
-           
+            result = ""
             for idx, func_call in enumerate(response.candidates[0].content.parts):
                 print(f"Possible function call: {idx}")
                 if func_call.function_call:
-                    function_call = response.candidates[0].content.parts[0].function_call
+                    # function_call = response.candidates[0].content.parts[0].function_call
+                    function_call = func_call.function_call
                     print(f"Function to call: {function_call.name}")
                     print(f"Arguments: {function_call.args}")
 
-                    if function_call.name == "get_greeting":
-                        template = next(rt for rt in mcp_resource_temp.resourceTemplates if rt.name == function_call.name)
-                        uri = fill_uri_template(template.uriTemplate, function_call.args)
-                        result = await session.read_resource(uri)
-                        print(f"Function result: {result}")
-                    else:
-                        result = await session.read_resource("bunq://user/account/primaryMonetary/balance")
-                        print(f"Function result: {result}")
-                        print(response.text)
-                else:
-                    print("No function call found in the response.")
-                    print(response.text)
-            
+                    tool_match = next((t for t in mcp_tools.tools if t.name == function_call.name), None)
+                    if tool_match:
+                        temp_res = await session.call_tool(function_call.name, arguments=function_call.args)
+                        print(f"Tool result: {temp_res}")
+                        result += f"{function_call.name} result: {str(temp_res)}\n\n"
+
+                    # Check if it's a resource template
+                    template_match = next((rt for rt in mcp_resource_temp.resourceTemplates if rt.name == function_call.name), None)
+                    if template_match:
+                        uri = fill_uri_template(template_match.uriTemplate, function_call.args)
+                        temp_res = await session.read_resource(uri)
+                        print(f"Resource Template result: {temp_res}")
+                        result += f"{function_call.name} result: {str(temp_res)}\n\n"
+
+                    # Check if it's a static resource
+                    resource_match = next((r for r in mcp_resources.resources if r.name == function_call.name), None)
+                    if resource_match:
+                        uri = resource_match.uri
+                        temp_res = await session.read_resource(uri)
+                        res_text = temp_res.contents[0].text
+                        print(f"Static Resource result: {temp_res}")
+                        result += f"{function_call.name} result: {str(res_text)}\n\n"
+
+            print("Final result: ", result)
             if not response.candidates[0].content.parts[0].function_call:
                 print("No function call found in the response.")
                 print(response.text)
+
+    # Gather context, such as day.
+    # today = datetime.date.today()
+    # weekday_name = today.strftime('%A')
             
     # await run()
 
