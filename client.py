@@ -12,6 +12,7 @@ import os
 import re
 import datetime
 from dotenv import load_dotenv
+from fastapi.middleware.cors import CORSMiddleware
 load_dotenv()
 
 client = genai.Client(
@@ -39,6 +40,14 @@ def fill_uri_template(uri_template: str, args: dict) -> str:
     return re.sub(r'{(\w+)}', lambda m: args[m.group(1)], uri_template)
 
 app = FastAPI()
+
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["*"],  # Or ["http://localhost:5173"] for just your frontend
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
 
 @app.get("/should-gift")
 async def should_gift():

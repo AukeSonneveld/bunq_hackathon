@@ -1,0 +1,139 @@
+body, #root {
+  height: 100vh;
+  margin: 0;
+  background: #222; /* or your preferred background */
+}
+
+.app {
+  position: relative;
+  width: 375px;
+  height: 812px;
+  margin: 0 auto;
+  background: #000;
+  overflow: hidden;
+}
+
+.homescreen {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.notification {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translate(-50%, -100%);
+  width: 90%;
+  max-width: 350px;
+  cursor: pointer;
+  animation: slideDown 0.5s forwards;
+  z-index: 10;
+}
+
+@keyframes slideDown {
+  to {
+    transform: translate(-50%, 0);
+  }
+}
+
+.gift-page {
+  width: 375px;
+  height: 812px;
+  margin: 0 auto;
+  background: #fff;
+  border-radius: 20px;
+  box-shadow: 0 0 20px #aaa;
+  font-family: 'Segoe UI', sans-serif;
+  overflow: hidden;
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 20;
+}
+
+.gift-header {
+  background: #1eb14a;
+  color: #fff;
+  padding: 1.5em 1em 1em 1em;
+  text-align: center;
+  border-radius: 20px 20px 0 0;
+}
+
+.gift-company {
+  font-size: 1.1em;
+  font-weight: 500;
+  margin-bottom: 0.5em;
+}
+
+.gift-main-offer {
+  font-size: 1.7em;
+  font-weight: bold;
+  margin-bottom: 0.5em;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.gift-highlight {
+  color: #fff;
+  background: #1eb14a;
+  padding: 0.1em 0.4em;
+  border-radius: 6px;
+}
+
+.gift-body {
+  padding: 1.5em 1em 1em 1em;
+  background: #f9f9f9;
+  color: #222;
+}
+
+.gift-row {
+  display: flex;
+  align-items: center;
+  margin-bottom: 1em;
+  font-size: 1.1em;
+}
+
+.gift-row span {
+  color: #222;
+}
+
+.gift-label {
+  min-width: 110px;
+  color: #888;
+  font-weight: 500;
+}
+
+.gift-original-price {
+  text-decoration: line-through;
+  color: #888;
+  margin: 0 0.5em;
+}
+
+.gift-discounted-label {
+  margin: 0 0.3em;
+  color: #888;
+}
+
+.gift-discounted-price {
+  color: #e6007a;
+  font-weight: bold;
+  font-size: 1.2em;
+  margin-left: 0.3em;
+}
+
+.gift-status {
+  font-weight: bold;
+  text-transform: capitalize;
+  margin-left: 0.5em;
+}
+
+.gift-status.active {
+  color: #1eb14a;
+}
+.gift-status.used {
+  color: #888;
+}
+.gift-status.timeout {
+  color: #e6007a;
+}
