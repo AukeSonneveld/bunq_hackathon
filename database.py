@@ -67,4 +67,101 @@ class PaymentDatabase:
     
     def close(self):
         """Close the database connection."""
+        self.conn.close()
+
+class ActivityDatabase:
+    def __init__(self, db_path="activities.db"):
+        """Initialize the database connection and create tables if they don't exist."""
+        self.conn = sqlite3.connect(db_path)
+        self.cursor = self.conn.cursor()
+        self._create_tables()
+    
+    def _create_tables(self):
+        """Create necessary tables if they don't exist."""
+        self.cursor.execute('''
+            CREATE TABLE IF NOT EXISTS activities (
+                id INTEGER PRIMARY KEY AUTOINCREMENT,
+                user_id INTEGER,
+                company TEXT,
+                product TEXT,
+                discount_amount REAL,
+                is_free BOOLEAN,
+                location TEXT,
+                start_date TIMESTAMP,
+                end_date TIMESTAMP,
+                status TEXT CHECK(status IN ('active', 'used', 'timeout')),
+                created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+            )
+        ''')
+        self.conn.commit()
+    
+    def add_activity(self, user_id, company, product, discount_amount, is_free, location, start_date, end_date):
+        """Add a new activity/offer to the database."""
+        self.cursor.execute('''
+            INSERT INTO activities (
+                user_id, company, product, discount_amount, is_free, 
+                location, start_date, end_date, status
+            )
+            VALUES (?, ?, ?, ?, ?, ?, ?, ?, 'active')
+        ''', (
+            user_id, company, product, discount_amount, is_free,
+            location, start_date, end_date
+        ))
+        self.conn.commit()
+        return self.cursor.lastrowid
+    
+    def update_activity_status(self, activity_id, new_status):
+        """Update the status of an activity."""
+        if new_status not in ['active', 'used', 'timeout']:
+            raise ValueError("Status must be one of: active, used, timeout")
+            
+        self.cursor.execute('''
+            UPDATE activities 
+            SET status = ? 
+            WHERE id = ?
+        ''', (new_status, activity_id))
+        self.conn.commit()
+        return self.cursor.rowcount > 0
+    
+    def get_latest_activity(self, user_id):
+        """Get the most recent active activity for a user."""
+        self.cursor.execute('''
+            SELECT * FROM activities 
+            WHERE user_id = ? AND status = 'active'
+            ORDER BY created_at DESC
+            LIMIT 1
+        ''', (user_id,))
+        return self._row_to_dict(self.cursor.fetchone())
+    
+    def get_all_user_activities(self, user_id):
+        """Get all activities for a user."""
+        self.cursor.execute('''
+            SELECT * FROM activities 
+            WHERE user_id = ?
+            ORDER BY created_at DESC
+        ''', (user_id,))
+        return [self._row_to_dict(row) for row in self.cursor.fetchall()]
+    
+    def _row_to_dict(self, row):
+        """Convert a database row to a dictionary."""
+        if row is None:
+            return None
+            
+        return {
+            'id': row[0],
+            'user_id': row[1],
+            'company': row[2],
+            'product': row[3],
+            'discount_amount': row[4],
+            'is_free': bool(row[5]),
+            'location': row[6],
+            'start_date': row[7],
+            'end_date': row[8],
+            'status': row[9],
+            'created_at': row[10]
+        }
+    
+    def close(self):
+        """Close the database connection."""
         self.conn.close() 
+
