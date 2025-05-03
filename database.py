@@ -72,6 +72,9 @@ class PaymentDatabase:
 class ActivityDatabase:
     def __init__(self, db_path="activities.db"):
         """Initialize the database connection and create tables if they don't exist."""
+        # if os.path.exists(db_path):
+        #     os.remove(db_path)
+
         self.conn = sqlite3.connect(db_path)
         self.cursor = self.conn.cursor()
         self._create_tables()

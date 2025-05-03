@@ -50,7 +50,7 @@ async def should_gift():
 
     db = PaymentDatabase()
     alle_summaries = db.get_all_summaries()
-    all_summaries = alle_summaries[:2]
+    all_summaries = alle_summaries
     valid_gift_options = []
 
 
