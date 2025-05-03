@@ -2,6 +2,10 @@ from google import genai
 from google.genai import types
 from mcp import ClientSession, StdioServerParameters
 from mcp.client.stdio import stdio_client
+from fastapi import FastAPI, Query
+from fastapi.responses import JSONResponse
+import json
+
 import os
 import re
 import datetime
@@ -32,12 +36,17 @@ def uri_template_to_json_schema(uri_template: str) -> dict:
 def fill_uri_template(uri_template: str, args: dict) -> str:
     return re.sub(r'{(\w+)}', lambda m: args[m.group(1)], uri_template)
 
-async def run(activity: str = "GETTING COFFEE"):
+app = FastAPI()
+
+@app.get("/should-gift")
+async def should_gift():
     async with stdio_client(server_params) as (read, write):
         async with ClientSession(
             read,
             write,
         ) as session:
+            activity = "STARBUCKS COFFEE SHOP"
+
             prompt = f"""
                 You are a contextual assistant that determines whether now is a good moment to offer the user a small gift — such as a discount or voucher — for a specific type of activity or place (e.g. a coffee shop, ice cream place, cinema, etc.).
 
@@ -171,12 +180,27 @@ async def run(activity: str = "GETTING COFFEE"):
                 model="gemini-2.5-flash-preview-04-17",
                 contents=final_prompt
             )
-            print("Final result: ", second_res.text)
+            # print("Final result: ", second_res.text)
+                        # Make sure we return only the JSON string as dict
+            try:
+                # Clean up Gemini response
+                raw = second_res.text.strip()
+                raw = raw.replace("```json", "").replace("```", "").strip()
+                raw = raw.replace("\n", "")
+                response_json = json.loads(raw)
+                return JSONResponse(content=response_json)
+            except Exception as e:
+                return JSONResponse(content={"error": "Failed to parse Gemini response", "raw": second_res.text})
+
 
             
     # await run()
 
-if __name__ == "__main__":
-    import asyncio
+# if __name__ == "__main__":
+#     import asyncio
 
-    asyncio.run(run())
+#     asyncio.run(run())
+
+if __name__ == "__main__":
+    import uvicorn
+    uvicorn.run("client:app", host="0.0.0.0", port=8000, reload=True)
